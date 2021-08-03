@@ -3,6 +3,7 @@ package com.haa.currencyexchnageservice.controller;
 //import java.math.BigDecimal;
 
 import com.haa.currencyexchnageservice.bean.CurrencyExchange;
+import com.haa.currencyexchnageservice.exception.CurrencyNotFoundException;
 import com.haa.currencyexchnageservice.repository.CurrencyExchangeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class CurrencyExchangeController {
         // BigDecimal.valueOf(50));
         CurrencyExchange currencyExchange = repository.findByFromAndTo(from, to);
         if (currencyExchange == null)
-            throw new RuntimeException("Unable to Find data for " + from + " to " + to);
+            throw new CurrencyNotFoundException("Unable to Find data for " + from + " to " + to);
 
         String port = environment.getProperty("local.server.port");
         currencyExchange.setEnvironment(port);

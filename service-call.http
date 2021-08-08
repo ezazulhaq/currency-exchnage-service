@@ -1,2 +1,4 @@
 # Currency Exchange service
 GET http://localhost:8001/currency-exchange/from/USD/to/INR HTTP/1.1
+###
+GET http://localhost:8001/sample-api

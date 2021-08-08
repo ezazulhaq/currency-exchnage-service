@@ -15,7 +15,7 @@ public class CircuteBreakerController {
     private Logger logger = LoggerFactory.getLogger(CircuteBreakerController.class);
 
     @GetMapping("/sample-api")
-    @Retry(name = "default")
+    @Retry(name = "sample-api")
     public String sampleApi() {
         logger.info("Sample API call received");
         ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8001/sample-api-dummy",

@@ -15,13 +15,17 @@ public class CircuteBreakerController {
     private Logger logger = LoggerFactory.getLogger(CircuteBreakerController.class);
 
     @GetMapping("/sample-api")
-    @Retry(name = "sample-api")
+    @Retry(name = "sample-api", fallbackMethod = "hasNoSuchMethod")
     public String sampleApi() {
         logger.info("Sample API call received");
         ResponseEntity<String> forEntity = new RestTemplate().getForEntity("http://localhost:8001/sample-api-dummy",
                 String.class);
 
         return forEntity.getBody();
+    }
+
+    public String hasNoSuchMethod(Exception ex) {
+        return ex.getMessage();
     }
 
 }

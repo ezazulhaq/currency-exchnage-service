@@ -18,6 +18,14 @@ spec:
         - image: ezazulhaq02/currency-exchnage-service:0.0.2-SNAPSHOT
           imagePullPolicy: IfNotPresent
           name: currency-exchnage-service
+          readinessProbe:
+            httpGet:
+              port: 8001
+              path: /actuator/health/readiness
+          livenessProbe:
+            httpGet:
+              port: 8001
+              path: /actuator/health/liveness
           resources:
             limits:
               memory: "128m"
